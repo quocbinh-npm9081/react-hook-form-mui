@@ -2,24 +2,21 @@ import React from 'react';
 import { TextField } from '@mui/material';
 import {useFormContext, Controller} from 'react-hook-form';
 
+const SubText: React.FC<{name: string,defaultValue?: string}> = ({name, defaultValue}) =>{
 
-
-function SubEmailText() {
-
-const {control , formState: { errors } } = useFormContext();
+  const {control , formState: { errors } } = useFormContext();
   return (
 
         <Controller 
-          name="email"
+          name={name}
           control={control}
-          defaultValue="example@gmail.com" 
+          defaultValue={defaultValue? defaultValue : ''}
           render={({field})=>{
             return(
               <TextField {...field}
-                        label="Email"
                         variant="outlined"
-                        error={!!errors.email}
-                        helperText={errors.email ? `${errors.email?.message}` : ''}
+                        error={!!errors[name]}
+                        helperText={errors[name] ? `${errors[name]?.message}` : ''}
               />
             )
           }}
@@ -29,4 +26,5 @@ const {control , formState: { errors } } = useFormContext();
   );
 }
 
-export default SubEmailText;
+
+export default SubText;
