@@ -5,6 +5,11 @@ import {useFormContext, Controller} from 'react-hook-form';
 const SubText: React.FC<{name: string,defaultValue?: string}> = ({name, defaultValue}) =>{
 
   const {control , formState: { errors } } = useFormContext();
+
+  console.log(name);  
+  console.log(errors.user);
+
+
   return (
 
         <Controller 
@@ -15,8 +20,8 @@ const SubText: React.FC<{name: string,defaultValue?: string}> = ({name, defaultV
             return(
               <TextField {...field}
                         variant="outlined"
-                        error={!!errors[name]}
-                        helperText={errors[name] ? `${errors[name]?.message}` : ''}
+                        error={!!errors}
+                        // helperText={`errors.${name} `? `errors.${name}.message` : ''}
               />
             )
           }}
